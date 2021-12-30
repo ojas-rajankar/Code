@@ -140,3 +140,7 @@ footer{
     text-align: center;
     font-family: "Raleway", sans-serif;
 }
+
+#welcome-text{
+    position: absolute;
+}

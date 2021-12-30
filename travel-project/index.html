@@ -34,7 +34,7 @@
         <section id="highlight">
             <h2>highlights</h2>
             <ul id="destinations">
-                <li class="destination">
+                <li id="destination" class="destination">
                     <img src="/travel-project/images/cities/barcelona.jpg" alt="">
                     <p>Barcelona <strong>Spain</strong></p>
                 </li>
@@ -52,5 +52,14 @@
     <footer>
         <h3>You Can Contact Us On</h3>
     </footer>
+
+    <script>
+        let welcome = document.getElementById("welcome-text");
+
+        window.addEventListener("scroll", function () {
+            let value = window.scrollY
+            welcome.style.left = value / 3 + "px"
+        })
+    </script>
   </body>
 </html>
