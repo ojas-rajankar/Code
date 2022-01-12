@@ -1,0 +1,38 @@
+body{
+    background-color: gainsboro;
+    text-align: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    margin: 20px auto;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+form label{
+    margin: 0px auto 10px auto;
+}
+
+form input{
+    margin: 0px 0px 10px 0px;
+}
+
+form button{
+    width: 6rem;
+    align-self: center;
+}
+#blogs{
+    align-self: center;
+    display: inline-flex;
+    flex-direction: row;
+
+}
+
+#blogs div{
+    width: 15rem;
+    align-self: center;
+}

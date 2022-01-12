@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Blog Site</title>
+		<link rel="stylesheet" href="/index.css" />
+	</head>
+	<body>
+		<form action="/" method="POST">
+			<label for="title">Blog Title</label>
+			<input
+				type="text"
+				id="text"
+				required
+				name="title"
+			/>
+
+			<label for="content">Blog Content</label>
+			<textarea
+				name="content"
+				required
+				id="content"
+				cols="30"
+				rows="10"
+			></textarea>
+
+			<label for="writer">Writer Name</label>
+			<input type="text" id="writer" name="writer" />
+
+			<button type="submit">Publish</button>
+		</form>
+        <h1>Published Blogs</h1>
+        <h2>Total published blogs: <%= blogs.length %> </h2>
+		<div id="blogs">
+            <% for(const blog of blogs) {%>
+                <div>
+                    <h2><%= blog.title %></h2>
+                    <p><%= blog.content %></p>
+                    <p><%= blog.writer %></p>
+                </div>
+            <% } %>
+        </div>
+	</body>
+</html>
