@@ -74,7 +74,7 @@ background-image: linear-gradient(315deg, #f977ce 0%, #c373f2 74%);
 		}
 
 		.items {
-			width: 60vw;
+			width: 80vw;
 			margin: 3rem auto 0 auto;
 			padding: 1rem 0;
 			background-color: rgba(255, 255, 255, 0.1);
@@ -165,7 +165,7 @@ background-image: linear-gradient(315deg, #f977ce 0%, #c373f2 74%);
 										: items.rank}
 								</p>
 								<img
-									src={items.iconUrl}
+									src={!items.iconUrl ? "https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg" : items.iconUrl}
 								></img>
 							</Top>
 							<Info>
@@ -178,7 +178,7 @@ background-image: linear-gradient(315deg, #f977ce 0%, #c373f2 74%);
 								<p>
 									Symbol:{" "}
 									{!items.symbol
-										? "SYM"
+										? "OMR"
 										: items.symbol}
 								</p>
 							</Info>
