@@ -41,6 +41,7 @@ const Button = styled.button`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	transition: all 0.3s linear;
 
 	img {
 		height: 1.6rem;

@@ -46,7 +46,7 @@ function App() {
 	return (
 		<div className="App">
 			<Header greet={greetings()} />
-			<Auth signin={signin} register={register} logout={logout} user={user} />
+			<Auth signin={signin} register={register} logout={logout} user={user} greetings={greetings}/>
 		</div>
 	);
 }
