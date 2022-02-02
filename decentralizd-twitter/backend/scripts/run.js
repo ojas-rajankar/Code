@@ -12,6 +12,10 @@ const main = async () => {
     tweet = await deTwitter.tweet("My First Tweet");
     tweet = await deTwitter.connect(randomPerson).tweet("My Second Tweet")
 
+    let like;
+    like = await deTwitter.like(1);
+    like = await deTwitter.like(0);
+
     let allTweets;
     allTweets = await deTwitter.getAllTweets();
     

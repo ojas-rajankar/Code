@@ -17,7 +17,7 @@ const Tweet = styled.div`
 	font-family: "IBM Plex Sans Thai Looped", sans-serif;
 
 	.user {
-		width: 15%;
+		width: 10%;
 		margin: 0;
 		padding: 0;
 	}
@@ -28,7 +28,7 @@ const Tweet = styled.div`
 	}
 
 	.content {
-		width: 85%;
+		width: 80%;
 		text-align: left;
 	}
 
@@ -37,7 +37,8 @@ const Tweet = styled.div`
 		padding: 0 5px;
 		font-size: calc(1rem + 0.8vw);
 		font-weight: 500;
-		width: 70vw;
+		width: 50vw;
+		overflow-x:hidden;
 	}
 
 	p {
@@ -93,7 +94,7 @@ const Tweet = styled.div`
 
 	.tweetHead {
 		display: flex;
-		width: 70vw;
+		width: 80vw;
 		justify-content: space-between;
 		align-items: start;
 	}
@@ -102,12 +103,13 @@ const Tweet = styled.div`
 		margin: auto;
 		padding: auto;
 		color: rgba(255,255,255,0.8);
-		width: 20vh;
+		width: 20vw;
 		align-items: center;
+		overflow-x:hidden;
 	}
 `;
 
-const Tweets = () => {
+const Tweets = (props) => {
 	const [tweeter, setTweeter] = useState("Tweeted By");
 	const [tweetContent, setTweetContent] = useState(
 		`Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
@@ -139,6 +141,14 @@ const Tweets = () => {
 		console.log(fundAmount);
 	}
 
+	const data = props.tweetData;
+	const id = data[0].toNumber()
+	const likes = data[4].toNumber()
+	const balance = data[5].toNumber()
+	const dateInfo = data[3].toString() * 1000;
+	const dateConversion = new Date(dateInfo);
+	const dateFormatting = dateConversion.toLocaleDateString("en-US")
+	
 	return (
 		<Tweet>
 			<div className="user">
@@ -150,23 +160,23 @@ const Tweets = () => {
 			</div>
 			<div className="content">
 				<div className="tweetHead">
-				<h3>{tweeter}</h3>
-				<h4>{date}</h4>
+				<h3>{props.tweetData[1]}</h3>
+				<h4>{dateFormatting}</h4>
 				</div>
-				<p>{tweetContent}</p>
+				<p>{props.tweetData[2]}</p>
 				<div className="buttons">
 					<img
 						onClick={liked}
 						src={like}
 						alt="user"
 					/>
-					<h4>{likeCount}</h4>
+					<h4>{likes}</h4>
 					<img
 						onClick={fund}
 						src={wallet}
 						alt="user"
 					/>
-					<h4>{funded} Eth</h4>
+					<h4>{balance} Eth</h4>
                     <input placeholder="Enter Amount..." type={"number"} onChange={e => setFundAmount(e.target.value)}/>
 					<button onClick={support}>Fund</button>
 				</div>

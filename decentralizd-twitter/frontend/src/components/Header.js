@@ -13,6 +13,7 @@ const Head = styled.div`
 	font-family: "IBM Plex Sans Thai Looped", sans-serif;
 	font-weight: 600;
 	font-size: calc(1rem + 0.5vw);
+	z-index: 3;
 
 	.user {
 		border-radius: 50%;
@@ -38,13 +39,28 @@ const Head = styled.div`
 		right: 1.5rem;
         cursor: not-allowed;
 	}
+
+	.wallet {
+		max-width: 30vw;
+		overflow-x: hidden;
+		position: absolute;
+		right: 5rem;
+        cursor: pointer;
+		color: rgba(29,161,242,0.6);
+
+	}
+
+	.wallet:hover {
+		color: rgba(29,161,242,1);
+	}
 `;
 
-const Header = () => {
+const Header = (props) => {
 	return (
 		<Head>
 			<img className="user" src={user} alt="user"/>
 			<div className="home">Home</div>
+			{!props.currentAccount ? <div className="wallet" onClick={props.connectWallet} >Connect Metamask</div> : <div className="wallet">Connected</div>}
 			<img className="stars" src={stars} alt="stars"/>
 		</Head>
 	);

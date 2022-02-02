@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Main = styled.div`
@@ -32,11 +32,25 @@ input:focus {
 }
 `
 
-const TweetInput = () => {
+const TweetInput = (props) => {
+
+    const [data, setData] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.tweet(data)
+    }
+
+    const handleOnChange = (e) => {
+        setData(e.target.value)
+    }
+
   return (
       <Main>
-          <input placeholder="What's happening?" type={"text"}/>
+          <form onSubmit={handleSubmit}>
+          <input onChange={handleOnChange} placeholder="What's happening?" type={"text"}/>
           <button>Tweet</button>
+          </form>
       </Main>
   );
 };
