@@ -1,0 +1,14 @@
+[debug] [2022-02-04T23:53:01.434Z] ----------------------------------------------------------------------
+[debug] [2022-02-04T23:53:01.435Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ojasr\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-02-04T23:53:01.436Z] CLI Version:   10.1.4
+[debug] [2022-02-04T23:53:01.436Z] Platform:      win32
+[debug] [2022-02-04T23:53:01.436Z] Node Version:  v16.13.1
+[debug] [2022-02-04T23:53:01.437Z] Time:          Sat Feb 05 2022 05:23:01 GMT+0530 (India Standard Time)
+[debug] [2022-02-04T23:53:01.437Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-02-04T23:53:01.501Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-02-04T23:53:01.501Z] > authorizing via signed-in user (ojasrajankar365@gmail.com)
+[debug] [2022-02-04T23:53:01.501Z] [iam] checking project convert-into-nft for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-02-04T23:53:01.503Z] > refreshing access token with scopes: []
+[debug] [2022-02-04T23:53:01.503Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
