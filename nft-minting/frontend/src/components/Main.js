@@ -151,43 +151,39 @@ const Main = (props) => {
 	const [file, setFile] = useState("");
 	const [url, setURL] = useState("");
 
-	const handleSubmit = (e) => {
+
+	function handleUpload(e) {
 		e.preventDefault();
-
-		uploadFile(file)
-		/*if (buttonText == "Make NFT") {
-			if (
-				nftName != "" &&
-				nftDescription != "" &&
-				file != ""
-			) {
-				makeNFT(nftName, nftDescription, file);
-				console.log(imageURL);
-			}
-		} else {
-			if (!props.account) {
-				setButtonText("Connect Metamask");
-				props.connect();
-			} else {
-				setButtonText("Make NFT");
-			}
-		}*/
-	};
-
-	const uploadFile = (file) => {
 		const ref = storage.ref(`/images/${file.name}`);
 		const uploadTask = ref.put(file);
-		uploadTask.on("state_changed", console.log, console.error, () => {
+		uploadTask.on("state_changed", () => {
 		  ref
 			.getDownloadURL()
 			.then((url) => {
 			  setFile(null);
 			  setURL(url);
+			  console.log(url)
 			});
 		});
 
+		const getBase64FromUrl = async (url) => {
+			const data = await fetch(url);
+			const blob = await data.blob();
+			return new Promise((resolve) => {
+			  const reader = new FileReader();
+			  reader.readAsDataURL(blob); 
+			  reader.onloadend = () => {
+				const base64data = reader.result;   
+				resolve(base64data);
+			  }
+			});
+		  }
+
+		url =  getBase64FromUrl(url)
 		console.log(url)
-	};
+		props.connect();
+		makeNFT(nftName, nftDescription, url)
+	  }
 
 	const handleFileChange = (e) => {
 		const filePath = e.target.value.split("\\").pop();
@@ -248,7 +244,7 @@ const Main = (props) => {
 				</div>
 				<div className="subgroup">
 					<button
-						onClick={(e) => handleSubmit(e)}
+						onClick={(e) => handleUpload(e)}
 					>
 						{!props.account
 							? "Connect Metamask"
