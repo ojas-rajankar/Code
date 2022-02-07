@@ -1,25 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useMemo, useState } from "react";
+import { useWeb3 } from "@3rdweb/hooks";
 
 function App() {
+
+  const { connectWallet, address, error, provider } = useWeb3();
+  console.log("Address: ", address)
+
+  if (!address) {
+    return (
+      <div className="landing">
+        <h1>Welcome to TCCDAO</h1>
+        <button onClick={() => connectWallet("injected")} className="btn-hero">
+          Connect your wallet
+        </button>
+      </div>
+    );
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div className="landing">
+      <h1>👀 wallet connected, now what!</h1>
+    </div>);
 }
 
 export default App;
