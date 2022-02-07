@@ -90,7 +90,7 @@ const MainContent = styled.div`
 
 const Main = (props) => {
 	const contractAddress =
-		"0x8FE8C5C1B71F8961df4ee7d58bAAce2c6AAf997C";
+		"0x9d0653B3EFaec68DBB88fB8F24923034aac4a95c";
 	const contractABI = abi.abi;
 	const nftView =
 		"https://rinkeby.rarible.com/collection/0x2c9584a1F091805284A7E27403cEfd18ea6F1A90/owned";
@@ -102,6 +102,8 @@ const Main = (props) => {
 	) => {
 		try {
 			const { ethereum } = window;
+
+			const accounts = await ethereum.request({method: "eth_accounts"})
 
 			if (ethereum) {
 				const provider =
@@ -131,65 +133,27 @@ const Main = (props) => {
 				);
 
 				console.log(
-					`Check You NFT At: https://rinkeby.rarible.com/collection/${signer}/owned`,
+					`Check Your NFT At: https://rinkeby.rarible.com/collection/${accounts[0]}/owned`,
 				);
+
+				alert(`Check Your NFT At: https://rinkeby.rarible.com/collection/${accounts[0]}/owned`)
 			}
 		} catch (error) {}
 	};
 
-	const [fileName, setFileName] = useState(
-		"Click To Upload Image",
-	);
-	const [imageURL, setImageURL] = useState("");
-	const [buttonText, setButtonText] = useState(
-		"Connect Metamask",
-	);
-
 	const [nftName, setNftName] = useState("");
 	const [nftDescription, setNftDescription] =
 		useState("");
-	const [file, setFile] = useState("");
-	const [url, setURL] = useState("");
-
+	const [text, setText] = useState("");
 
 	function handleUpload(e) {
 		e.preventDefault();
-		const ref = storage.ref(`/images/${file.name}`);
-		const uploadTask = ref.put(file);
-		uploadTask.on("state_changed", () => {
-		  ref
-			.getDownloadURL()
-			.then((url) => {
-			  setFile(null);
-			  setURL(url);
-			  console.log(url)
-			});
-		});
+		makeNFT(nftName, nftDescription, text);
+	}
 
-		const getBase64FromUrl = async (url) => {
-			const data = await fetch(url);
-			const blob = await data.blob();
-			return new Promise((resolve) => {
-			  const reader = new FileReader();
-			  reader.readAsDataURL(blob); 
-			  reader.onloadend = () => {
-				const base64data = reader.result;   
-				resolve(base64data);
-			  }
-			});
-		  }
-
-		url =  getBase64FromUrl(url)
-		console.log(url)
-		props.connect();
-		makeNFT(nftName, nftDescription, url)
-	  }
-
-	const handleFileChange = (e) => {
-		const filePath = e.target.value.split("\\").pop();
-		setFile(e.target.files[0]);
-		setFileName(filePath);
-		setImageURL(URL.createObjectURL(e.target.files[0]));
+	const handleTextChange = (e) => {
+		const NftText = e.target.value;
+		setText(NftText);
 	};
 
 	const handleNameChange = (e) => {
@@ -226,22 +190,15 @@ const Main = (props) => {
 						></input>
 					</div>
 				</div>
-				<img src={imageURL} />
-				<div>
-					<div className="subgroup img">
-						<label for="file">{fileName}</label>
+				<div className="subgroup">
 						<input
-							id="file"
-							name="file"
-							type={"file"}
-							className="inputfile"
-							accept="image/*"
+							placeholder="Some Text For Your NFT"
+							type={"text"}
 							onChange={(e) =>
-								handleFileChange(e)
+								handleTextChange(e)
 							}
 						></input>
 					</div>
-				</div>
 				<div className="subgroup">
 					<button
 						onClick={(e) => handleUpload(e)}

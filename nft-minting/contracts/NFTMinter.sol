@@ -10,18 +10,23 @@ contract NFTMinter is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
+    string baseSvg = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
+
     constructor() ERC721("MyNFT", "OMR") {
         console.log("My NFT Contract");
+        
     }
 
     function makeAnNFT(
         string memory _name,
         string memory _description,
-        string memory _imgUrl
+        string memory _imgWords
     ) public {
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender, newItemId);
 
+        string memory combinedWord = string(abi.encodePacked(_imgWords));
+string memory finalSvg = string(abi.encodePacked(baseSvg, combinedWord, "</text></svg>"));
         string memory json = Base64.encode(
             bytes(
                 string(
@@ -30,9 +35,9 @@ contract NFTMinter is ERC721URIStorage {
                         _name,
                         '", "description": "',
                         _description,
-                        '", "image": "',
-                        _imgUrl,
-                        '"}'
+                        '", "image": "data:image/svg+xml;base64,',
+                    Base64.encode(bytes(finalSvg)),
+                    '"}'
                     )
                 )
             )
