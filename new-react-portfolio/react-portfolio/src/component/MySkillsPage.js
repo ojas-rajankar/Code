@@ -94,8 +94,8 @@ function MySkillsPage() {
 						Blockchain Developer
 					</Title>
 					<Description>
-						I Love Developing Blockchain Apps And I Am Also A Certified Smart Contract
-						Developer by Blockchain Council
+						I Love Developing Blockchain Apps From Scratch And I Am Also A Great Solidity Smart Contract
+						Developer 
 					</Description>
 					<Description>
 						<strong>I Love To Develope:</strong>
@@ -113,7 +113,7 @@ function MySkillsPage() {
 					<Description>
 						<strong>Tools I Know:</strong>
 						<p>
-							Remix, Truffle, Hard Hat, Ganashe, Meta
+							Remix, Chai, Hard Hat, Alchemy, Meta
 							Mask.
 						</p>
 					</Description>
@@ -137,7 +137,7 @@ function MySkillsPage() {
 					<Description>
 						<strong>My Skills:</strong>
 						<p>
-							HTML, CSS, JS, React, Redux, Tailwind CSS, Firebase etc.
+							HTML, CSS, JS, React, Bootstrap, Tailwind CSS, Firebase etc.
 						</p>
 					</Description>
 					<Description>

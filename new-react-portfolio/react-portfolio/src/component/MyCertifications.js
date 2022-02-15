@@ -3,7 +3,7 @@ import React from 'react'
 const MyCertifications = () => {
     return (
         <div>
-            My Certifications Page
+            Work Under Progress
         </div>
     )
 }

@@ -54,7 +54,7 @@ function BlogPage() {
                 <PowerButton />
                 <SocialIcons />
                 <BigTitlte
-					text="Blog"
+					text="Projects"
 					top="10%"
 					left="5%"
 				/>

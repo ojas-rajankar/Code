@@ -66,7 +66,7 @@ const Intro = (props) => {
                 <Text>
                     <h1>Hi,</h1>
                     <h3>I'm Ojas Rajankar.</h3>
-                    <h6>I am a Blockchain and Full Stack Developer with React Specialization.</h6>
+                    <h6>I am a Full Stack Blockchain Developer with React Specialization.</h6>
                 </Text>
             </SubBox>
             <SubBox>

@@ -69,7 +69,7 @@ const AboutPage = () => {
 					<img src={astronaut} alt="spaceman" />
 				</Spaceman>
 				<Main>
-					I am a Certified Smart Contract
+					I am a Great Smart Contract
 					Developer, I have past experience as
 					Blockchain Developer and 5+ Years of
 					experience in Front Web End Development,
