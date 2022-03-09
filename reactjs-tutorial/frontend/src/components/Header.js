@@ -15,7 +15,7 @@ const Main = styled.div`
 	color: black;
 	font-weight: 800;
 	align-items: center;
-	z-index: 2;
+	z-index: 10;
 	border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
 `;
 const Logo = styled.span`
@@ -54,12 +54,17 @@ const Button = styled.button`
 	}
 `;
 
-const Header = () => {
+const Header = (props) => {
+
+	const home = () => {
+		props.setCurrentLesson("")
+	}
+
 	return (
 		<Main>
-			<Button>
+			<Button onClick={home}>
 				<img src="https://img.icons8.com/ios-glyphs/30/000000/menu-rounded.png" />
-				Menu
+				Home
 			</Button>
 			<Logo> The Coding Corporation</Logo>
 			<Button>

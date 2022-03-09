@@ -9,6 +9,10 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
+
+	button {
+		cursor: pointer;
+	}
 `;
 
 const AuthDiv = styled.div`
@@ -218,6 +222,10 @@ const Auth = (props) => {
 		props.logout();
 	};
 
+	const lesson1 = () => {
+		props.setCurrentLesson("Lesson1");
+	};
+
 	const getName = (emailid) => {
 		emailid = String(emailid);
 		const nameid = emailid.split("@")[0];
@@ -231,7 +239,10 @@ const Auth = (props) => {
 			{!props.user ? (
 				<AuthDiv>
 					<form onSubmit={handleSubmit}>
-						<h2>Getting Started With The Coding Corporation 🚀</h2>
+						<h2>
+							Getting Started With The Coding
+							Corporation 🚀
+						</h2>
 						<input
 							placeholder={email}
 							onChange={(event) =>
@@ -284,34 +295,43 @@ const Auth = (props) => {
 							type="submit"
 							onClick={logout}
 						>
+							Connect MetaMask
+						</button>
+						<button
+							type="submit"
+							onClick={logout}
+						>
 							Log Out 🙈
 						</button>
 					</WelcomeDiv>
 					<MainDiv>
 						<p>
 							<strong>
-								Master Blockchain: Learn To
-								Build And Deploy Apps Over
-								Ethereum 🚀
+								Web3 Beginner: Learn
+								Blockchain Basics And Create
+								Your First DApp 🚀
 							</strong>
 						</p>
 						<p>
-							In this module you will get
-							complete knowledge of what
-							blockchain is and how does it
-							work. Then, we will move on to
-							writing some smart contracts with
-							solidity and deploy them on
-							ethereum!!!
+							In this module you will get an
+							intro to blockchain and learn
+							the basics of solidity and
+							create an simple dapp using
+							hardhat, ethereum, solidity,
+							reactjs, ethers.js. We will host
+							it on rinkeby test network so it
+							won't cost you any real money.
 						</p>
-						<button>Start Learning</button>
+						<button onClick={lesson1}>
+							Start Learning
+						</button>
 					</MainDiv>
 					<MainDiv>
 						<p>
 							<strong>
-								Master Blockchain: Learn To
-								Build And Deploy Apps Over
-								Ethereum 🚀
+								Web3 Master: Learn To Build
+								And Deploy Apps Over
+								Multiple Chains 🚀
 							</strong>
 						</p>
 						<p>
@@ -319,68 +339,25 @@ const Auth = (props) => {
 							complete knowledge of what
 							blockchain is and how does it
 							work. Then, we will move on to
-							writing some smart contracts with
-							solidity and deploy them on
+							writing some smart contracts
+							with solidity and deploy them on
 							ethereum!!!
 						</p>
-						<button>Start Learning</button>
+						<button>Comming Soon</button>
 					</MainDiv>
 					<MainDiv>
 						<p>
 							<strong>
-								Master Blockchain: Learn To
-								Build And Deploy Apps Over
-								Ethereum 🚀
+								Solidity Beginner: Learn The
+								Basics Of Solidity And Start
+								Building Amazing Smart
+								Contracts
 							</strong>
 						</p>
 						<p>
-							In this module you will get
-							complete knowledge of what
-							blockchain is and how does it
-							work. Then, we will move on to
-							writing some smart contracts with
-							solidity and deploy them on
-							ethereum!!!
+							In this module you will learn the basics of solidity and will be able to make custom smart contracts upto 
 						</p>
-						<button>Start Learning</button>
-					</MainDiv>
-					<MainDiv>
-						<p>
-							<strong>
-								Master Blockchain: Learn To
-								Build And Deploy Apps Over
-								Ethereum 🚀
-							</strong>
-						</p>
-						<p>
-							In this module you will get
-							complete knowledge of what
-							blockchain is and how does it
-							work. Then, we will move on to
-							writing some smart contracts with
-							solidity and deploy them on
-							ethereum!!!
-						</p>
-						<button>Start Learning</button>
-					</MainDiv>
-					<MainDiv>
-						<p>
-							<strong>
-								Master Blockchain: Learn To
-								Build And Deploy Apps Over
-								Ethereum 🚀
-							</strong>
-						</p>
-						<p>
-							In this module you will get
-							complete knowledge of what
-							blockchain is and how does it
-							work. Then, we will move on to
-							writing some smart contracts with
-							solidity and deploy them on
-							ethereum!!!
-						</p>
-						<button>Start Learning</button>
+						<button>Comming Soon</button>
 					</MainDiv>
 				</SuperDiv>
 			)}

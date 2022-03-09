@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Auth from "./components/Auth";
 import { useState } from "react";
 import { auth } from "./firebase";
+import Lesson1 from "./components/Lesson1";
 
 function App() {
 	const signin = (email, password) => {
@@ -35,6 +36,8 @@ function App() {
       setUser(authUser);
     });
 
+	const [currentLesson, setCurrentLesson] = useState("");
+
 
 	const greetings = () => {
 		const greet = ["Hola", "Namaste", "Hi", "Hello"];
@@ -45,8 +48,8 @@ function App() {
 
 	return (
 		<div className="App">
-			<Header greet={greetings()} />
-			<Auth signin={signin} register={register} logout={logout} user={user} greetings={greetings}/>
+			<Header greet={greetings()} setCurrentLesson={setCurrentLesson} />
+			{currentLesson === "" ? <Auth signin={signin} register={register} logout={logout} user={user} greetings={greetings} setCurrentLesson={setCurrentLesson}/> : <div>{currentLesson === "Lesson1" ? <Lesson1 user={user}></Lesson1> : <div></div>}</div>}
 		</div>
 	);
 }

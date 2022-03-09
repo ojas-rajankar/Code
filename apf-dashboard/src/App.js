@@ -80,24 +80,27 @@ function App() {
 			<h1>APF Dashboard</h1>
 			<form onSubmit={(e) => handleSubmit(e)}>
 				<input
+          placeholder="Full Name"
 					onChange={(e) =>
 						handleDisplayNameChange(e)
 					}
 					type={"text"}
 					required
-				/>
+				/><br/><br/>
 				<input
+        placeholder="HCL Email ID"
 					onChange={(e) => handleEmailChange(e)}
 					type={"email"}
 					required
-				/>
+				/><br/><br/>
 				<input
+        placeholder="Password"
 					onChange={(e) =>
 						handlePasswordChange(e)
 					}
 					type={"password"}
 					required
-				/>
+				/><br/><br/>
 				<button onClick={signIn}>Sign In</button>
 				<button onClick={register}>Register</button>
 			</form>
