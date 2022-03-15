@@ -59,35 +59,7 @@ const Input = styled.input`
   cursor: pointer;
 `;
 
-const Button = styled.button`
-  width: auto;
-  height: 5vh;
-  padding: 0.5vh 1vw;
-  text-align: center;
-  box-sizing: content-box;
-  border-radius: 2.5vh;
-  border: none;
-  background: linear-gradient(
-    90deg,
-    #ee7c65,
-    #f6c39d 20%,
-    #ead899 40%,
-    #87d5ff 60%,
-    #9281f5 80%,
-    #ff85a9
-  );
-  font-size: 2.5vh;
-  font-weight: 600;
-  font-family: "Fredoka", sans-serif;
-  transition: all 0.3s linear;
-  cursor: pointer;
-  margin: 0 3vh;
 
-  img {
-    height: 2.5vh;
-    margin-bottom: -0.5vh;
-  }
-`;
 
 const LinksDisplay = styled.div`
   width: 80vw;
@@ -122,15 +94,7 @@ const LinksDisplay = styled.div`
     box-sizing: content-box;
     border-width: 3px;
     border-style: solid;
-    border-image: linear-gradient(
-      90deg,
-      #ee7c65,
-      #f6c39d 18%,
-      #ead899 36%,
-      #87d5ff 57%,
-      #9281f5 76%,
-      #ff85a9
-    );
+    border-image: linear-gradient(90deg, #faa94d, #f27038);
     border-image-slice: 1;
     padding: 1vh;
     height: 2vh;
@@ -161,15 +125,7 @@ const LinksDisplay = styled.div`
     box-sizing: content-box;
     border-width: 3px;
     border-style: solid;
-    border-image: linear-gradient(
-      90deg,
-      #ee7c65,
-      #f6c39d 18%,
-      #ead899 36%,
-      #87d5ff 57%,
-      #9281f5 76%,
-      #ff85a9
-    );
+    border-image: linear-gradient(90deg, #faa94d, #f27038);
     border-image-slice: 1;
     height: 3vh;
     cursor: pointer;

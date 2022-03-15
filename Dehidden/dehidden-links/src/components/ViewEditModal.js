@@ -166,6 +166,8 @@ const ConfirmModal = (props) => {
         link.click();
       }
 
+      const array = [{"pageNo":"1" ,"linkId":"01", "linkName":"name", "linkURL":"link.url", "destinationURL":"destination.url", "qrCode":"image"}]; 
+
   return (
     <Modal>
     <Form>
