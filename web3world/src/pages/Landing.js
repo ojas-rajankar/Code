@@ -18,10 +18,10 @@ const Landing = () => {
   return (
     <div>
       <Img src={img1} />
-      <a href="wallet">
+      <a href="setup">
         <Img src={img2} />
       </a>
-      <a href="commingsoon">
+      <a href="solidity">
         <Img src={img3} />
       </a>
       <a href="commingsoon">
