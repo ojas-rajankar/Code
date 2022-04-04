@@ -5,9 +5,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-import { initializeApp } from "firebase/app";
-import { getMessaging, onMessage } from "firebase/messaging";
-
 const Main = styled.div`
   table {
     width: 100vw;
@@ -100,25 +97,6 @@ function App() {
     }
   };
 
-  //Firebase Setup
-
-  const firebaseApp = initializeApp({
-    apiKey: "AIzaSyBzaNM9iuGrAWA-A2rba6_BzEDSjWXJ8bk",
-    authDomain: "drop-notifier-dd89e.firebaseapp.com",
-    databaseURL: "https://drop-notifier-dd89e.firebaseio.com",
-    projectId: "drop-notifier-dd89e",
-    storageBucket: "drop-notifier-dd89e.appspot.com",
-    messagingSenderId: "735568294695",
-    appId: "1:735568294695:web:a1d219ea6040a7b584ef02",
-    measurementId: "G-23BSWR9B8R"
-  });
-
-  const messaging = getMessaging(firebaseApp);
-
-  onMessage(messaging, (payload) => {
-    console.log("Message received. ", payload);
-  });
-
   //Notification Setup
 
   const [notificationButtonText, setNotificationButtonText] = useState(
@@ -130,24 +108,8 @@ function App() {
     if (permissionStatus === "default") {
       var askPermission = Notification.requestPermission();
     } else if (permissionStatus === "granted") {
-      setNotificationButtonText("Send Notification");
-      sendNotification(
-        "NFT AIRDROPPED!",
-        "We Have Air Dropped Your NFT!, Click To Check Your NFT On OpenSea 👀"
-      );
+      setNotificationButtonText("Will Be Notified!");
     }
-  };
-
-  const sendNotification = (title, body) => {
-    var notification = new Notification(title, {
-      body: body,
-      icon: logo,
-      vibrate: 10
-    });
-    notification.onclick = function (event) {
-      event.preventDefault();
-      window.open("http://www.mozilla.org", "_blank");
-    };
   };
 
   //Fetching Transactions
@@ -169,21 +131,45 @@ function App() {
         setSafeGas(response.data.result.SafeGasPrice);
       });
   };
+
   const getTransactions = async () => {
     await axios
       .get(
-        `https://api-testnet.polygonscan.com/api?module=account&action=txlist&address=0x756212f2Eb2cbd97CAc8B8f16ff044fe6281FDcf&startblock=0&endblock=99999999&sort=asc&apikey=GGFU2AV98HT24I7HIGQZCCNQJVX7SGZTGS`
+        `https://api-testnet.polygonscan.com/api?module=account&action=txlist&address=0x47bF96eC1E4C0c8c4f8c1e67f5a14Be126EFa407&startblock=0&endblock=99999999&sort=asc&apikey=GGFU2AV98HT24I7HIGQZCCNQJVX7SGZTGS`
       )
       .then(function (response) {
         setTransactionList(response.data.result);
       });
   };
 
-  useEffect(() => {
+  const alertNewTransaction = async () => {
+    for (let i = 0; i < transactionList.length; i++) {
+      if (
+        transactionList[i].timeStamp >
+        Math.round(new Date().getTime() / 1000) - 5
+      ) {
+        alert(i + 1);
+      }
+    }
+  };
+
+  const storeDetails = async () => {
+    const fcmToken = window.localStorage.get("fcm_token");
+    const accountAddress = currentAccount;
+
+    
+  };
+
+  useEffect(async () => {
     getTransactions();
     getGasOracle();
     requestNotificationPermission();
     checkIfWalletIsConnected();
+    setInterval(function () {
+      getTransactions();
+      getGasOracle();
+      alertNewTransaction();
+    }, 5000);
   }, []);
 
   return (
@@ -218,13 +204,7 @@ function App() {
               <td className="data">{item.blockHash}</td>
               <td className="data">{item.hash}</td>
               <td className="data">{item.to}</td>
-              <td className="data">
-                {new Date(item.timeStamp * 1000).getHours() +
-                  ":" +
-                  new Date(item.timeStamp * 1000).getMinutes() +
-                  ":" +
-                  new Date(item.timeStamp * 1000).getSeconds()}
-              </td>
+              <td className="data">{item.timeStamp}</td>
               <td className="data">{item.isError ? "Passed" : "Failed"}</td>
             </tr>
           ))}

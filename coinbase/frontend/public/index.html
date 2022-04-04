@@ -11,9 +11,65 @@
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <script src="/__/firebase/9.6.7/firebase-app-compat.js"></script>
+    <script src="/__/firebase/9.6.7/firebase-messaging-compat.js"></script>
+    <script src="/__/firebase/init.js?useEmulator=true"></script>
     <title>DehiddenScan</title>
   </head>
   <body>
     <div id="root"></div>
+
+    <script>
+      // Retrieve Firebase Messaging object.
+      const messaging = firebase.messaging();
+
+      // IDs of divs that display registration token UI or request permission UI.
+      const tokenDivId = "token_div";
+      const permissionDivId = "permission_div";
+
+      // Handle incoming messages. Called when:
+      // - a message is received while the app has focus
+      // - the user clicks on an app notification created by a service worker
+      //   `messaging.onBackgroundMessage` handler.
+      messaging.onMessage((payload) => {
+        sendNotification(payload.notification.title, payload.notification.body)
+      });
+
+      function getToken() {
+        messaging
+          .getToken({
+            vapidKey:
+              "BEn0ZuViq6RpecQrKY6c57jxfr0S-_M-16x7A9OA6DRfx1CCvbc5MP8uqBTBCMUKegWjgHLW1mWq9pUj9xfXLaE"
+          })
+          .then((currentToken) => {
+            if (currentToken) {
+              window.localStorage.setItem("fcm_token", currentToken)
+              console.log(currentToken)
+            } else {
+              // Show permission request.
+              console.log(
+                "No registration token available. Request permission to generate one."
+              );
+            }
+          })
+          .catch((err) => {
+            console.log("An error occurred while retrieving token. ", err);
+          });
+      }
+
+      function sendNotification(title, body) {
+        var notification = new Notification(title, {
+          body: body,
+          icon: "./logo192.png",
+          vibrate: 10
+        });
+        notification.onclick = function (event) {
+          event.preventDefault();
+          window.open("https://drop-notifier-dd89e.web.app/", "_blank");
+        };
+      }
+
+      getToken();
+    </script>
   </body>
 </html>
